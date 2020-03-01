@@ -1,7 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const HttpError = require("./models/http-error");
+
 const placesRoutes = require("./routes/places-routes");
+const usersRoutes = require("./routes/users-routes");
 
 const app = express();
 
@@ -9,6 +11,7 @@ const app = express();
 app.use(bodyParser.json());
 
 app.use("/api/places", placesRoutes);
+app.use("/api/users", usersRoutes);
 
 app.use((req, res, next) => {
   const error = new HttpError("Rota nao encontrada", 404);
@@ -23,4 +26,4 @@ app.use((error, req, res, next) => {
   res.json({ message: error.message || "An unknown error occurred !" });
 });
 
-app.listen(5000);
+app.listen(4000);
