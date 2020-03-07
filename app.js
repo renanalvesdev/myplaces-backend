@@ -28,7 +28,9 @@ app.use((error, req, res, next) => {
 });
 
 mongoose
-  .connect("mongodb://localhost:27017/my_places")
+  .connect(
+    "mongodb://localhost:27017,localhost:27018,localhost:27019/my_places?replicaSet=rs"
+  )
   .then(() => {
     app.listen(5000);
   })
